@@ -12,6 +12,13 @@ namespace VirtualDeviants.Utility.Attributes.Editor
 		{
 
 			string[] levelScenes = GetLevelScenes();
+
+			if (levelScenes.Length == 0)
+			{
+				EditorGUI.LabelField(position, "Missing Scenes in Build");
+				return;
+			}
+
 			int selected = Array.IndexOf(levelScenes, property.stringValue);
 			selected = Mathf.Max(0, selected);
 			selected = EditorGUI.Popup(position, property.displayName, selected, levelScenes);
